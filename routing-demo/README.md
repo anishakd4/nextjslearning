@@ -61,6 +61,33 @@ private folders can be helpful in a few different scenarios:
 - For sorting and grouping files in code editor and
 - finally for avoiding potential naming with future Nextjs file conventions.
 
+## Route Groups
+
+- Allows us to logically group our routes and project files without affecting the URL path structure.
+- We can mark a folder as route group to exclude it from the routes URL path.
+- To create a route group simply wrap folders name in paranthesis. So auth folder should be treated as route group and its name will be omitted from the URL path. auth folder serves as a folder to organize our code.
+- We can have multiple levels of nested route groups if needed
+
+## Layouts
+
+- A page is a UI unique that is unique to a route
+- A layout is a UI that is shared between multiple pages in the application
+- It is common to have common header footer. With layout it is much easier in nextjs
+- you can define a layout by default exporting a React component from a layout.jsx or layout.tsx.
+- That component should accept a children prop that will be populated with a child page during rendering.
+- We won't be creating layout from scratch as nextjs already provides one out of the box. Inside the app folder you can find a layout.tsx. This layout serves as the topmost layout and is referred to as root layout. The root layout is a mandatory layout for every nextjs application. Nextjs automatically generates this file even if we delete it.
+- By defining a single layout.tsx file we can create a consistent layout for every page in the application. We have the freedom to add any markup styles or behavior we wish to
+
+## Nested Layouts
+
+- Layouts can be nested.
+- We can create layout file specifically for product details page. We can create layout.tsx file in product details folder
+
+## Route group layout
+
+- To selectively apply a layout to certain segments while leaving others unchanged.
+- Route groups allows us to opt specific segments into a layout without altering the URL
+
 ```bash
 npm run dev
 # or
