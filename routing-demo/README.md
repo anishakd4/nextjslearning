@@ -109,6 +109,12 @@ private folders can be helpful in a few different scenarios:
 
 - title field's primary purpose is to define the document title.
 - It can be either a string or object.
+- title.default property is useful when you want to provide a fallback title for child route segments, they don't explicitly specify a title
+- If a child route segment such as a blog/page.tsx doesn't have a title defined it will fallback to the default title
+- to create dynamic titles by adding a prefix or suffix you can use title.template property. This property applies to child route segments and not the segment in which it is defined.
+- absolute title : if you want to provide a title that completely ignores title.template set in the parent segments you can use title.absolute property.
+
+## Link Component Navigation
 
 ```bash
 npm run dev
