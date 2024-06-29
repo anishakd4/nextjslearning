@@ -116,6 +116,9 @@ private folders can be helpful in a few different scenarios:
 
 ## Link Component Navigation
 
+- To enable client side navigation nextjs provides us with link component. The Link component is a react component that extends HTML anchor element and it is the primary way to navigate between routes in nextjs.
+- replace prop replaces the current history state instead of adding new URL to the stack
+
 ```bash
 npm run dev
 # or
