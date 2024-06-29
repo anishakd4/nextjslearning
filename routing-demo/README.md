@@ -86,7 +86,29 @@ private folders can be helpful in a few different scenarios:
 ## Route group layout
 
 - To selectively apply a layout to certain segments while leaving others unchanged.
-- Route groups allows us to opt specific segments into a layout without altering the URL
+- Route groups allows us to opt specific segments into a layout without altering the URL.
+
+## Routing MetaData
+
+- Ensuring proper SEO is crucial for increasing visibility and attracting users.
+- Nextjs introduced the MetaData API which allows us to define MetaData for each page.
+- Metadata ensures accurate and relevant information is displayed when your pages are shared or indexed.
+- Export a static metadata object or a dynamic generateMetadata function
+- Both layout.tsx and page.tsx can import metadata. If applied in a layout it applies to all pages in that layout, but if defined in a page, it applies only to that page.
+- MetaData is read from root level to the final page level
+- When there is metadata in multiple places for the same route, they get combined, but page metadata will replace layout metadata if they have the same properties.
+- Both layout and page can have metadata but page metadata takes precedence if both are present.
+- When multiple segments in a route export metadata object the properties are merged to form the final metadata object. During merging the deepest segment takes priority
+- Dynamic metadata depends on dynamic information such as the current route parameters, external data or metadata in the parent segments.
+- To define dynamic metadata we export a generic metadata function that returns a metadata object from a layout or page.tsx file
+- A very common case for dynamic metadata would be a dynamic route like product ID. If we use a static metadata object for /product/id the page title should be the same for every product, however for a e commerce site it is essential to have a unique title for each product.
+- generateMetadata can also be defined as a async function
+- We cannot export both the metadata object and generateMetadata function from the same route segment.
+
+## title metadata
+
+- title field's primary purpose is to define the document title.
+- It can be either a string or object.
 
 ```bash
 npm run dev
