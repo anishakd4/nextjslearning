@@ -198,6 +198,17 @@ private folders can be helpful in a few different scenarios:
 
 ## Unmatched Routes
 
+- Sub-navigation within routes is one of the benefits of using parallel routes. In case of our complex dashboard a use case will be navigation a default list of notifications and an archive list of notifications.
+- when navigating to http://localhost:3000/complex-dashboard/archived only the notifications slot has the matching route, the other 3 slots children users and revenue become unmatched.
+- When dealing with a unmatched slot the content rendered by nextjs depend on the routing approach.
+- In the case of navigation within the UI, nextjs retain the previously active state of slot regardless of the changes in the URL. Meaning when we navigate between default notifications and archived notifications, the other slots children revenue and user remain unaffected. These slots continue to display whatever content they were showing before and are not influenced by the shift in the URL path.
+- In case of Page reload nextjs immediately searches for a default.tsx file within each unmatched slot. The presence of this file is is critical as it provides the default content nextjs will render in the user interface. If this default.tsx file is missing in any of the unmatched slots in the current route then nextjs will render a 404 error
+- http://localhost:3000/complex-dashboard/archived will render 404 as there is not default.tsx file in children or user or revenue slots.
+- The default.tsx file in Nextjs serves as fallback to render content when the framework cannot retrieve a slots active state from the current URL. You have complete freedom to define the UI for unmatched routes. You can either mirror the content found in page.tsx or craft an entirely custom view.
+- So in our case we have to include default.tsx files into 3 unmatched slots
+
+## Conditional Routes
+
 ```bash
 npm run dev
 # or
