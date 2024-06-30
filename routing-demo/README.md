@@ -158,6 +158,46 @@ private folders can be helpful in a few different scenarios:
 
 ![component hierarchy](./component_hierarchy.png)
 
+## Recovering from Errors
+
+- ErrorBoundary defined in error.tsx comes with a handy prop. It receives a reset function which we can destructure along with error object
+- To ensure that we can recover on client side we need to convert our Page.tsx to client component as well.
+- Executing the reset function attempts to render the error boundaries contents. If successful the fallback error component is replaced with the re-rendered content from page.tsx
+
+## Handling Errors in Nested Routes
+
+- Error bubble up to the closest parent error boundary.
+- This implies that error.tsx file will cater to errors for all its nested child segments.
+- By positioning the error.tsx at different levels in the nested folders of the route, you can achieve a more granular level of error handling.
+- If we move error.tsx file to the products folder, we see the error message but however this time entire products route is replaced with the UI from the error.tsx file. The error from the page.tsx file from the reviewId folder bubbles us to the nearest error boundary which is now defined in the error.tsx file in the products folder.
+
+## Handling Errors in Layouts
+
+- An error.tsx will handle errors for all its nested child segments.
+- However there is a nuance when it comes to layout.tsx component within the same segment. The error boundary doesn't catch errors thrown here because it is nested inside the layouts components.
+- The visual representation of the component hierarchy for a given segment you will see that the layouts sit above the error boundary.
+- The error boundary will not handle errors thrown errors thrown in a layout.tsx component within the same segment. To overcome this we need to place the error.tsx file in the layout's parent segment.
+- The placement of the error.tsx file plays a pivotal role in managing errors efficiently across different segments of our application.
+
+## Parallel Routes
+
+- Parallel Routes are advanced routing mechanism that allows for the simultaneous rendering of multiple pages within the same layout.
+- Parallel Routes are defined in Next.js using a feature known as slots.
+- Slots help structure our component in a modular fashion.
+- To define a slot we use @folder naming convention.
+- Each slot is then passed as a prop to its corresponding layout.tsx file.
+- Each slot is automatically passed to the layout.tsx component as a prop which we can then use to structure the dashboard page.
+- The slots users, revenue and notifications are available as props and we don't have to import them.
+- slots are not route segments and don't affect the URL structure. /complex-dashboard/users or /complex-dashboard/@users result into 404 not found.
+- Benefit of parallel route is their ability to split a single layout into various slots making the code more manageable. This is particularly advantageous when different teams work on different sections of the page.
+- Of course this is the same with the traditional component composition as well. The true benefit of parallel routes lies in the capacity for independent route handling and sub navigation.
+- Parallel routes handle each route independently. This means that each slot of your layout such as user analytics or revenue metrics or can have its own loading and error states. This granular constrol is particularly beneficial in scenarios where different sections of the page load at varying speed or encounter unique errors.
+- Parallel routes allows simultaneous rendering of different pages within the same layout.
+
+![Parallel routes](./parallel_routes.png)
+
+## Unmatched Routes
+
 ```bash
 npm run dev
 # or
