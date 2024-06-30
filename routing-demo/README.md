@@ -156,7 +156,7 @@ private folders can be helpful in a few different scenarios:
 - Isolate errors to affected segment while keeping the rest of the application functional.
 - Add functionality to attempt to recover from an error without a full page reload.
 
-<img src="component_hierarchy.png" alt="component hierarchy">
+![component hierarchy](./component_hierarchy.png)
 
 ```bash
 npm run dev
