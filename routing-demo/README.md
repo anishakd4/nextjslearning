@@ -209,6 +209,12 @@ private folders can be helpful in a few different scenarios:
 
 ## Conditional Routes
 
+- Parallel routes offer a way to implement conditional routing for example based on the user's authentication state you can choose to render the dashboard for authenticated users or a login page for those who are not authenticated. This is powerful as it enable fully separated code on the same URL.
+- We need to create a login slot.
+- This login slots also benefits from independent error and loading states as well as sub-navigation to a possible sign-up or forgot password route.
+
+## Intercepting Routes
+
 ```bash
 npm run dev
 # or
