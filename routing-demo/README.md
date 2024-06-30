@@ -215,6 +215,12 @@ private folders can be helpful in a few different scenarios:
 
 ## Intercepting Routes
 
+- Intercepting routes allow you to intercept or stop the default routing behavior to present an alternative view or component when navigating through the UI, while still preserving the intended route for scenarios like page reloads
+- This can be useful if you want to show a route while keeping the context of the same page.
+- Clicking on the login button normally takes you to a full login page but however with intercepting routes you can configure the application to display a login modal instead while the URL is still updated to reflect the /login route. This ensures link remains shareable. If the page is reloaded or someone accesses the page using the shared link this full login is displayed as expected.
+- Similarly in a photo feed application where users can browse through a list of images, clicking on a photo would navigate users to a new page dedicated to that image. With intercepting routes clicking on a photo opens a model within the feed displaying an enlarged photo and details. The url updates to reflect the selected photo so that it becomes shareable.
+- Direct URL access or page reloads still lead to a full page view of the photo
+
 ```bash
 npm run dev
 # or
