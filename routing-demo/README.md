@@ -127,6 +127,28 @@ private folders can be helpful in a few different scenarios:
 
 ## Navigating Programmatically
 
+- useRouter only works in client side.
+- If you want to replace the history instead of pushing the route onto the stack you can use router the replace.
+- We can use router.back() without any arguments to navigate back to the previous page in the browser's history stack.
+- You can also use router.forward() to navigate forward to the next page.
+
+## Templates
+
+- layouts only mount the part representing the content of the newly loaded page but keep all the common elements untouched. layout don't mount shared components resulting in the better performance. A majority of the time this is behavior you need.
+- however you might come across a scenario where you need the layouts to create a new instance for each of the children on navigation. For such situations you can use the template file as replacement of the file.
+- Templates are similar to layouts in that they wrap each child layout or page, But with templates when a user navigates between routes that share a template, a new instance of the component is mounted, DOM elements are recreated, state is not preserved and effects are re-synchronized.
+- A template can be defined by exporting a default React component from a template.tsx or .jsx file
+- Similar to layouts, templates also should accept a children prop which will render the nested segments in the route.
+- It is possible to include both layout.tsx and template.tsx. In such a scenario the layout renders first, the layout's children is replaced by the component exported from the template files.
+
+## Loading UI
+
+- So far we came across several special files page.tsx, template.tsx, layout.tsx, and not-found.tsx
+- loading.tsx file allows us to create loading states that are displayed to the users while a specific route segment's content is loading. The loading state appears immediately upon navigation, giving users the assurance that the application is responsive and actively loading content.
+- To create a loading state you simply need to add a loading.tsx file to the designated folder. This file will automatically wrap page.tsx file and all its nested children within a React suspense boundary.
+- Using loading.tsx file you can display the loading state as soon as user navigates to the new route. The immediate feedback reassures users that their action has been acknowledged, reduces perceived loading times perceived loading times and makes the application feel more responsive.
+- Nextjs allows the creating of shared layouts that remain interactive while new route segments are loading. Meaning users can continue interacting with certain parts of the application while such as navigation menu or sidebar even if the main content is still being fetched. By following loading the loading UI convention, you ensure that loading states don't obstruct the functionality of shared layouts, providing a smooth uninterrupted user experience.
+
 ```bash
 npm run dev
 # or
