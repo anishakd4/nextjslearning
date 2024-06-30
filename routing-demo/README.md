@@ -229,6 +229,8 @@ private folders can be helpful in a few different scenarios:
 
 ## Parallel Intercepting Routes
 
+- Since we want a modal that will render on top of the current feed we need a parallel route first. So within the photo-feed folder we will create @modal as a parallel route and include a layout.tsx file along with children slots
+
 ```bash
 npm run dev
 # or
