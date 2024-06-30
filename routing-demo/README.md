@@ -149,6 +149,15 @@ private folders can be helpful in a few different scenarios:
 - Using loading.tsx file you can display the loading state as soon as user navigates to the new route. The immediate feedback reassures users that their action has been acknowledged, reduces perceived loading times perceived loading times and makes the application feel more responsive.
 - Nextjs allows the creating of shared layouts that remain interactive while new route segments are loading. Meaning users can continue interacting with certain parts of the application while such as navigation menu or sidebar even if the main content is still being fetched. By following loading the loading UI convention, you ensure that loading states don't obstruct the functionality of shared layouts, providing a smooth uninterrupted user experience.
 
+## Error Handling
+
+- error.tsx must a client component
+- error.tsx automatically wraps a route segment and its nested children is a react error boundary. Create error UI tailiored to specific segments using the file system hierarchy to adjust granularity.
+- Isolate errors to affected segment while keeping the rest of the application functional.
+- Add functionality to attempt to recover from an error without a full page reload.
+
+<img src="component_hierarchy.png" alt="component hierarchy">
+
 ```bash
 npm run dev
 # or
