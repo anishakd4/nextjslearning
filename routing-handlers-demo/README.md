@@ -20,6 +20,10 @@
 
 ## Dynamic Route Handlers
 
+- new folder id wrapped in square brackets is created.
+- handler function receives 2 parameters request and context.
+- Currently only value of context is params which is an object containing the dynamic route parameters for the current route. http://localhost:3000/comments/3
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
