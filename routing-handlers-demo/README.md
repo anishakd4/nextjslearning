@@ -12,6 +12,14 @@
 - We have to create a Route.ts that exports HTTP verbs as functions [Demo](http://localhost:3000/hello)
 - We have to be mindful about potential conflicts between page routes and route handlers. For example route.ts file and page.tsx file in the same profile folder. In this case route.ts file will handle the request by default. To avoid this conflict, we can move the route.ts file into a API directory.
 
+## Handling GET Request
+
+- data.ts inside comments is not a Nextjs convention. http://localhost:3000/comments
+- Every route handler function receives the standard web request model object as a parameter. From this request object we are going to extract the JSON body specified as part of our request.
+- For a POST request a 201 status of resource creating is more appropriate. If we were to return Response.Json object status would remain 200.
+
+## Dynamic Route Handlers
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
