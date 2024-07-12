@@ -1,8 +1,22 @@
 import { headers } from "next/headers";
 import { comments } from "./data";
+import { NextRequest } from "next/server";
 
-export async function GET() {
-  return Response.json(comments);
+// export async function GET() {
+//   return Response.json(comments);
+// }
+
+export async function GET(request: NextRequest) {
+  console.log({ request });
+  const searchParams = request.nextUrl.searchParams;
+  console.log({ searchParams });
+  const query = searchParams.get("query");
+  console.log({ query });
+  const filteredComments = query
+    ? comments.filter((comment) => comment.text.includes(query))
+    : comments;
+
+  return Response.json(filteredComments);
 }
 
 export async function POST(request: Request) {
