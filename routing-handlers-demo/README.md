@@ -5,6 +5,12 @@
 - There is no overhead to create and configure a separate server. Nextjs provides everything you need out of the box.
 - Route handlers are also great for making external API requests.
 - Route handlers run server side ensuring that sensitive information like private keys remain secure and never gets shipped to the browser.
+- Routing handlers are equivalent of API routes in Page router.
+- Similar to page routes, route handlers must also be placed within the app folder.
+- function name matching HTTP verb is another convention that we must follow.
+- Similar to pge routes route handlers can be organized in folders and nested within sub folders. This allows for cleaner organization and easier management of routes. http://localhost:3000/dashboard/users http://localhost:3000/dashboard
+- We have to create a Route.ts that exports HTTP verbs as functions [Demo](http://localhost:3000/hello)
+- We have to be mindful about potential conflicts between page routes and route handlers. For example route.ts file and page.tsx file in the same profile folder. In this case route.ts file will handle the request by default. To avoid this conflict, we can move the route.ts file into a API directory.
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
