@@ -34,3 +34,17 @@
 - Next request object provides convenient methods for managing query parameters with ease.
 
 ## Redirects in Route Handlers
+
+- redirect is use to handle redirects. http://localhost:3000/comments/8
+- in network tab request status it shows a 307 status code indicating a temporary redirect.
+
+## Headers in Route Handlers
+
+- HTTP headers represent the metadata associated with an API request and response. This metadata can be classified into 2 categories.
+- First is request headers. These are sent by the client such as web browsers to the server. They contain essential information about the request, which helps the server understand and process it correctly.
+- For example we have the "User-Agent" header which identifies the browser and operating system to the server. This is often used for browser specific content rendering and analytics. "Accept" header which indicates the content types like text, video or image formats that the client can process. It enables the server to deliver the resource in a format suitable for the client. Another common request header is the "Authorization" header used by the client to authenticate itself to the server. It carries credentials allowing controlled access to resources.
+- Second is response headers. These are sent back from the server to the client. They provide information about the server and the data being sent in the response.
+- For example, "Content-Type" header which indicates the media type of the response. It tells the client what data type of the returned content is such as text/html for HTML documents and application/json for JSON data.
+- Headers from the headers functions are read only. To set headers you need to return a new response wih new header.
+
+## Cookies in Route Handlers
