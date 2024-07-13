@@ -55,3 +55,17 @@
 - To set a cookie first option is to return a new response using the setCookie header. To get the cookie we can use requestHeaders.
 - Second option is to use cookies method provided by nextjs.
 - Other than get and set "cookies()" function support other methods also like "has", "delete" etc.
+
+## Caching in Route Handlers
+
+- Route Handlers are cached by default when using the GET method with the response object in the Nextjs.
+- By default value of dynamic is "auto" which attempts to cache as much as possible. We will set it to fore-dynamic which ensuring that handler is executed for each user request. If we re run "yarn build" and "yarn start" the time response will get updated on each request. We have successfully opted out of caching. Now besides the segment config option there are 3 other ways to opt out of caching for a route handler. 1 - Using the request method of the GET method. 2 - Employing dynamic functions like headers() and cookies(). 3 - Using any HTTP method other than GET
+
+## Middleware
+
+- Middleware in nextjs is a powerful feature that offers a robust way to intercept and control the flow of requests and responses within your applications
+- It does this at the global level significantly enhancing features like redirection, URL rewrites, authentication, headers and cookies management and more
+- Middleware allows us to specify paths where it will be active. Two main approaches: 1 - Custom matcher config, 2 - Conditional statements. http://localhost:3000/profile redirect to home page.
+- Conditional statements can control middleware responses based on the request path.
+- Apart from re-directions middleware also allows URL rewrites which is a useful tool for legacy URL support or SEO. http://localhost:3000/profile
+- We can use cookies and headers in middleware.
