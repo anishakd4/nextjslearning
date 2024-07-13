@@ -48,3 +48,10 @@
 - Headers from the headers functions are read only. To set headers you need to return a new response wih new header.
 
 ## Cookies in Route Handlers
+
+- Cookies in Route Handlers
+- Cookies are small pieces of data that a server sends to a user's web browser. The browser may send store the cookie and send it back to the same server with later requests.
+- Cookies are mainly used for 3 purposes. 1 - Session management like login and shopping cards. 2 - Personalization like user preferences and themes. 3 - Tracking like recording and analyzing user behavior.
+- To set a cookie first option is to return a new response using the setCookie header. To get the cookie we can use requestHeaders.
+- Second option is to use cookies method provided by nextjs.
+- Other than get and set "cookies()" function support other methods also like "has", "delete" etc.
