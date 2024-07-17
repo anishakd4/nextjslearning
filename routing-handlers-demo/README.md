@@ -156,4 +156,9 @@
 - Client components are the familiar React components we have been using.
 - They are typically rendered on the client side CSR but they can also be rendered to HTML on the server(SSR) allowing users to immediately see the page's HTML content rather than a blank screen.
 - Components that are primarily run on the client but can (And should) also be executed on the server side as an optimization strategy.
+- Client components have access to the client environment such as browser allowing them to use state, effects and event listeners to handle interactivity and also access browser exclusive APIS like geolocation or localStorage allowing you to build UI for specific use cases.
+- In fact the term client component doesn't signify anything new. It simply helps differentiate these components from the newly introduced Server components.
+
+## Server components
+
 - Client components have access to the client environment
