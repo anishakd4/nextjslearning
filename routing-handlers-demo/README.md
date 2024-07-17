@@ -69,3 +69,91 @@
 - Conditional statements can control middleware responses based on the request path.
 - Apart from re-directions middleware also allows URL rewrites which is a useful tool for legacy URL support or SEO. http://localhost:3000/profile
 - We can use cookies and headers in middleware.
+
+## Client side rendering
+
+- This method of rendering where component code is transformed into a user interface directly within the browser(the client) is called client side rendering(CSR)
+- CSR quickly became the standard for SPAs with widespread adoption.
+
+## Drawbacks for CSR
+
+- Generating HTML that mainly contains a single div tag is not optimal for SEO as it provides little content for search engines to index. Large bundle size and a waterfall of network requests for API responses from deeply nested components may result in meaningful content not being rendered fast enough for a crawler to index it.
+- Having the browser handle all the work such as fetching data, computing the UI and making the HTML interactive can slow things down. Users might see a blank screen or a loading spinner while the page loads
+- Each new feature added to the application increases the size of the JavaScript bundle, prolonging the wait time for users to see the UI.
+- To overcome these drawbacks of client side rendering, Modern frameworks like gatsby and nextjs pivoted towards server side solutions
+
+## Server side solutions
+
+- It significantly improves SEO because search engines can easily index the server rendered content
+- Users can immediately see the HTMl content instead of a blank screen or loading spinner.
+- Full interactivity of the page is on hold until the javascript bundle containing react itself along with the application specific code has been completely downloaded and executed by the browser. This important phase known as hydration is where the static HTML page initially served by the server is brought to live.
+
+## hydration
+
+- During hydration react takes control in the browser reconstruction the component tree in memory based on the static HTML that was served.
+- It carefully plans the placement of interactive elements within this tree. Then React proceeds to proceeds to bind necessary Javascript logic to these elements. This involves initializing application state, attaching event handlers for actions such as clicks and mouse hovers and setting up any other dynamic functionalities required for a fully interactive user experience.
+
+## Server side solutions
+
+- SSR can be categorized into 2 strategies. 1 - Static site generation and 2 - Server side rendering.
+- SSG occurs at build times when the application is deployed on the server. This results in pages that are already rendered and ready to be served. It is ideal for content that doesn't change often like Blog posts.
+- SSR on the other hand renders page on-demand in response to user requests. It is suitable for personalized content like social media feeds where the HTML depends on the logged in user.
+- SSR was a significant improvement over Client side rendering providing faster initial page loads and better SEO.
+
+## Drawbacks of SSR
+
+- You have to fetch everything before you can show anything. Components can not start rendering and the pause or wait while the data is still being loaded. If a component needs to fetch data from the database or another source like API this must complete before the server can begin rendering the page. This can delay the server response time to the browser as the server must finish collecting all necessary data before any part of the page can be sent to the client
+- You have to load everything before you can hydrate anything. For successful hydration where React adds interactivity to the server rendered HTML, the component tree on browser must exactly match the server generated component tree. This means that all the JavaScript for the components must be loaded on the client before you can start hydrating any of them.
+- You have to hydrate everything before you can interact with anything. React hydrates the component tree in a single pass meaning once it starts it won't stop until it finished with the entire tree. All components must be hydrated before you can interact with any of them.
+
+## Suspense for SSR
+
+- Use the "<suspense>" component to unlock 2 major SSR features. 1 - HTML streaming on the server and 2 - selective hydration on the client.
+- With React 18 there is a new possibility. By wrapping a part of the page within suspense component, we instruct React it doesn't need to wait for the wrapped component to be fetched to start streaming the HTML for the rest of the page. React will send a placeholder like a loading spinner instead of the complete component. Once the server is ready with the data for the wrapped component, React sends additional HTML through the ongoing stream accompanied by an inline script tag containing the minimal Javascript needed to correctly position that HTML. As a result of this even before the full react library is loaded on the client side, the HTML for the wrapped component becomes visible to the user.
+- So you don't have to fetch everything before you can show anything. If a particular section delays the initial HTML, it can be seamlessly integrated into the stream later. This is the essence of how Suspense facilitates server side HTML streaming.
+- Until the Javascript for the wrapped component is loaded client side app hydration can not start. And if the Javascript bundle for the wrapped section is large, this could significantly delay the process. To mitigate this code splitting can be used.
+
+## Code splitting
+
+- Code splitting allows you to mark specific code segments as not immediately necessary for loading, signalling your bundler to segregate them into separate "<script>" tags.
+- using React.lazy for code splitting enables you to separate the wrapped section's code from the primary javascript bundle.
+- Javascript containing react and the code for the entire application, excluding the wrapped section can now be downloaded independently by the client without having to wait for the wrapped section's code.
+
+## selective hydration on the client
+
+- By wrapping the wrapped section with "<suspense>", you have indicated to React that it should not prevent the rest of the page from not just streaming but also from hydrating.
+- This feature selective hydration allows for the hydration of sections as they become available, before the rest of the HTML and the javascript code can be fully downloaded.
+- Thanks to selective hydration, a heavy piece of JS doesn't prevent the rest of the page from becoming interactive.
+- Initially non interactive content streams in as HTML, the we ask react to hydrate. The Javascript code for the wrapped component isn't there yet but we can selectively hydrate other components. Wrapped component will be hydrated once it is loaded.
+- Selective hydration offers solution to the issue: "The necessity to hydrate everything to interact with anything".
+- React begins hydrating as soon as possible enabling interactions with elements like header, side navigation without waiting for the main component to be hydrated.
+- The process is managed automatically by React.
+- In scenarios where multiple components await hydration, React prioritizes hydration based on user interactions.
+- For example side navigation was about to be hydrated and you clicked on the main component area. React will synchronously hydrate the clicked component during the capture phase of the click event. This ensures component is ready to respond immediately to the user interactions, side navigation will hydrate later on.
+
+![selective hydration](selective_hydration.png)
+
+## Drawbacks of suspense SSR
+
+- First even though JavaScript code is streamed from the browser asynchronously, eventually entire code for the web page must be downloaded by the user. As applications add more features, the amount of code user needs to download also grows. This leads to an important question: should users really have to download so much data.
+- the current approach requires that all React components undergo hydration on the client side, irrespective of their actual need for interactivity. This process can inefficiently spend resources and extend the loading times and time to interactivity for the user, as their devices need to process and render components that might not even require client side interaction. This leads to question: should all components be hydrated, even those that don't need interactivity.
+- In spite of server's superior capacity to handle intensive processing tasks, the bulk of Javascript execution still takes place on the user's device. This can slow down performance especially on devices that are not very powerful. This leads to question: should so much of the work be done on the user's device.
+
+## The evolution of React
+
+- CSR(Client side rendering) -> SSR(server side rendering) -> Suspense for SSR
+- Suspense for SSR brought us closer to a seamless rendering experience.
+- Challenges faced : 1- Increased bundle sizes leading to excessive download for the users. 2- Unnecessary hydration delaying interactivity. 3- extensive client side processing that could result in poor performance.
+
+## React Server Components (RSC)
+
+- RSC represent a new architecture designed by the React team.
+- This approach aims to leverage the strengths of both server and client environments, optimizing for efficiency, load times and interactivity.
+- The architecture introduces a dual component model : 1- client components and 2- server components. This distinction is not based on the functionality of the components but rather on where they execute and the specific environments they are designed to interact with.
+
+## Client components
+
+- Client components are the familiar React components we have been using.
+- They are typically rendered on the client side CSR but they can also be rendered to HTML on the server(SSR) allowing users to immediately see the page's HTML content rather than a blank screen.
+- Components that are primarily run on the client but can (And should) also be executed on the server side as an optimization strategy.
+- Client components have access to the client environment
