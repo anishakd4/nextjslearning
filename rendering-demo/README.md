@@ -67,3 +67,13 @@
 - time rendered in the "/about" route remains same irrespective of how many times you refresh the page.
 
 ## Dynamic Rendering
+
+- Dynamic rendering is a server rendering strategy where routes are rendered for each user at request time.
+- It is useful when a route has data that is personalized to the user or contains information that can only be known at request time, such as cookies or the URL's search parameters.
+- News websites, personalized e-commerce pages and social media feeds are some examples where dynamic rendering is beneficial.
+- Next question arises on how to use this feature or how to inform nextjs that we want to dynamically render a particular route in our application.
+- During rendering if a dynamic function is discovered, nextjs will switch to dynamically rendering the whole route
+- In nextjs dynamic functions are :cookies(), headers() and searchParams which acts more like a prop available for every page. Using any of these will opt the whole route into dynamic rendering at request time.
+- After we include "cookies()" function in about page if we build again then we can notice "ƒ" sign in from of about route in the terminal. "ƒ" stands for dynamic rendering : meaning server rendered on demand using Node.js.
+- Dynamically rendered pages are not statically rendered at build time. So if we inspect server/app we see dashboard.html page as before but we don't see the about.html page as before.
+- Now if we build and start again and load "/about", it will render the latest time each time. HTML file is not generated in the server since a page is built for every request there is no need to generate a page into the build folder.
