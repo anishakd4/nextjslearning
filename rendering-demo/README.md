@@ -77,3 +77,12 @@
 - After we include "cookies()" function in about page if we build again then we can notice "ƒ" sign in from of about route in the terminal. "ƒ" stands for dynamic rendering : meaning server rendered on demand using Node.js.
 - Dynamically rendered pages are not statically rendered at build time. So if we inspect server/app we see dashboard.html page as before but we don't see the about.html page as before.
 - Now if we build and start again and load "/about", it will render the latest time each time. HTML file is not generated in the server since a page is built for every request there is no need to generate a page into the build folder.
+
+## Streaming
+
+- Streaming is a strategy that allows for progressive UI rendering from the server. Work is divided into chunks and streamed to the client as soon as it is ready.
+- This enables user to see parts of the page immediately, before the entire content has finished rendered. Streaming significantly improves both the initial page loading performance and the rendering of UI elements that rely on slower data fetches, which would otherwise block the rendering of the entire route.
+- Streaming is integrated into the the Nextjs app router by default.
+- Rendering of Products and reviews component is delayed by 2 and 4 seconds. We can imagine that this simulates the time taken to fetch data and render the component.
+- Normally this will halt the page load of the route http://localhost:3000/product-detail for slightly above 3 seconds.
+- but we can enhance this with suspense. We just need to wrap slow components with suspense.
