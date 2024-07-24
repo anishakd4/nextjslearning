@@ -86,3 +86,36 @@
 - Rendering of Products and reviews component is delayed by 2 and 4 seconds. We can imagine that this simulates the time taken to fetch data and render the component.
 - Normally this will halt the page load of the route http://localhost:3000/product-detail for slightly above 3 seconds.
 - but we can enhance this with suspense. We just need to wrap slow components with suspense.
+
+## Server only code
+
+- Certain code is intended to execute on the server.
+- You might have modules or functions that use multiple libraries, use environment variables, interact directly with the database or process confidential information.
+- Since javascript modules can be shared, it's possible for code that is meant only for the server to unintentionally end up in the client.
+- If server side code gets bundled into the client's side javascript, it could lead to a bloated bundle size, expose secret keys, database queries and sensitive business logic.
+- It is crucial to separate server only code from client side code to protect the application's security and integrity.
+
+## server only package
+
+- provides a build time error if developers accidentally import one of these modules into a client component.
+- server component only logs to terminal not on browser.
+- client component logs to browser. it also logs to terminal as every client component is also rendered once on the server to generate the initial HTML.
+
+## Third Party Packages
+
+- Since server components introduce a new paradigm in React, third party packages in the ecosystem are gradually adapting, beginning to add "use client" directive to components that rely on only client side features, marking a clear distinction in their execution environment.
+- Many components from npm packages, which traditionally leverage client side features haven't yet integrated this directive.
+- The absence of "use client" directive means that while these components will function correctly in client components, they may encounter issues or might not work at all within server components.
+- To address this you can wrap third party components that rely on client only features in your own client components.
+- ImageSlider code in client-route will work seamlessly. Same ImageSlider code in server-route will throw issues as slider components uses client side features but library code doesn't have "use client" directive.
+- To resolve this we must encapsulate third party components that depend on client only features within our own client components.
+
+## Context Providers
+
+- Context Providers are typically rendered near the root of the application to share global application state and logic.
+- However since React context is not supported in Server components, attempting to create a context at the root of your application will result in an error.
+- To address this you can create a context and render its provider inside a separate client component.
+- In Nextjs application layout.tsx is the root file in the app folder.
+- It is important to note that even though we wrapped the application within a client component ThemeProvider, server components down the tree will remain server components.
+
+## Client-only Code
