@@ -119,3 +119,10 @@
 - It is important to note that even though we wrapped the application within a client component ThemeProvider, server components down the tree will remain server components.
 
 ## Client-only Code
+
+- just as it is important to restrict certain operations to the server, it is equally important to confine some functionality to the client side.
+- Client only code typically interacts with the browser specific features like the DOM, the window object, localstorage etc. which are not available on the server.
+- Ensuring that such code is executed only on the client side prevents errors during server-side rendering.
+- To prevent unintended server side usage of client side code, we can use a package called client-only.
+
+## Client Component Placement
