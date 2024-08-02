@@ -124,5 +124,19 @@
 - Client only code typically interacts with the browser specific features like the DOM, the window object, localstorage etc. which are not available on the server.
 - Ensuring that such code is executed only on the client side prevents errors during server-side rendering.
 - To prevent unintended server side usage of client side code, we can use a package called client-only.
+- by importing client-only in a module ensure that the module will trigger a build time error if it is mistakenly included in the server side code. Now if we try to use client side only function mistakenly in the server side component then build process will fail.
+- http://localhost:3000/server-route will show error if use clientOnlyFunction() in it.
+- just as server only code needs isolation, client side code must be confined to the client side to leverage browser specific features effectively.
+- client-only package serves as a guard rail ensuring our client side code remains where it belongs enhancing our app's reliability and maintainability.
 
 ## Client Component Placement
+
+- To compensate for the server components not being able to manage state and handle interactivity, you need to create client components.
+- It is recommended to position these client components lower in your component tree.
+- in http://localhost:3000/landing-page there will be log statements in the browser console as all components as server components by default.
+- After adding useState to navbar.tsx component error will be thrown : "You're importing a component that needs useState. It only works in a Client Component but none of its parents are marked with "use client", so they're Server Components by default".
+- After adding "use client" directive at the top of the navbar component we can log statements in the browser console for all the 3 components not just navbar component.
+- When we add 'use client' directive to a component it not only makes that component a client component but also affects every child component in the component tree below it. So navlinks and navsearch also became client component as well. This concept is crucial to understand if we have a large component tree. Imagine converting a server component into a client component to add some interactivity. This change would turn the entire subtree of children into client components and consequently all their code will be sent to the browser as a result we would loose all the advantages of server components.
+- Therefor the recommended practice is to place client components as low as possible in the component tree ideally making them leaf components. So we can move "use client" directive to the navsearch component if that is the only component needed to use useState.
+
+## Interleaving Server and Client Components
