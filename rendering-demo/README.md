@@ -140,3 +140,9 @@
 - Therefor the recommended practice is to place client components as low as possible in the component tree ideally making them leaf components. So we can move "use client" directive to the navsearch component if that is the only component needed to use useState.
 
 ## Interleaving Server and Client Components
+
+- Any component such as server component one nested inside a client component such as client component one is automatically converted to a client component
+- Since client components are rendered after server components you can not import a server component into a client component module as it would require a new request back to the server.
+- Although server component one is defined as a server component when it is nested inside a client component one it is converted to a client component which is executed client side as well, and in the client environment there is no file system module.
+- Importing a server component inside a client component is pattern not supported in Nextjs.
+- However, there is a workaround if we pass server component as a prop to the client component.
