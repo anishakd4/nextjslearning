@@ -146,3 +146,11 @@
 - Although server component one is defined as a server component when it is nested inside a client component one it is converted to a client component which is executed client side as well, and in the client environment there is no file system module.
 - Importing a server component inside a client component is pattern not supported in Nextjs.
 - However, there is a workaround if we pass server component as a prop to the client component.
+
+## Data Fetching
+
+- App router uses the react server components RSC architecture which allows us to fetch data using either server component or client components.
+- It is advantageous to fetch data using server components as they have direct access to the server-side resources such as databases or file systems.
+- This not only taps into the server's computational power and proximity to data sources for efficient data fetching and rendering but also minimizes the need for client side processing.
+- Server components support various configurations for caching, revalidating and optimizing data fetching.
+- On the client side data fetching is typically managed through third party libraries such as TanStack query which offers its own robust APIs.
