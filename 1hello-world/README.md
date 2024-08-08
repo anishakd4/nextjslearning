@@ -46,3 +46,12 @@
 ## run steps
 
 - when we run npm run dev in the terminal, the execution is transferred to layout.tsx. The RootLayout component is rendered when we navigate to localhost:3000, the children prop will always refer to the component defined in the page.tsx file
+
+## React server components (RSC)
+
+- React server components is a new architecture introduced in React 18 which was quickly embraced by Nextjs.
+- This architecture introduces new way of creating React components splitting them into 2 types:
+  1. server components
+  2. client components
+- in nextjs all components are by default server components. They have the ability to run tasks like reading files or fetching data from a database. They don't have the ability to use hooks and handle client interactions.
+- To create client components it is necessary to add "use client" at the top of the component file. Client components can't perform tasks like reading files. They have the ability to use hooks and handle client interactions. Client components are the traditional components we are familiar with.
