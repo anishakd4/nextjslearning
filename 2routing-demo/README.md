@@ -1,3 +1,9 @@
+## Routing
+
+- Nextjs has a file system based routing mechanism.
+- URL paths that users access in the browser are defined by files and folders in codebase.
+- Not every file corresponds to a route in codebase, we need to follow a convention.
+
 ## Routing Conventions
 
 - All routes must be placed inside app folder
