@@ -29,7 +29,9 @@ When these conventions are followed the file automatically becomes a route
 ![second_route](./second_route.png)
 
 http://localhost:3000/blog
+
 http://localhost:3000/blog/first
+
 http://localhost:3000/blog/second
 
 ## Dynamic Routes
@@ -41,7 +43,9 @@ http://localhost:3000/blog/second
 Every page in the app router receives route parameters as a prop. Lets destructure it as params. The params object contains the route parameters as key value pairs
 
 http://localhost:3000/products
+
 http://localhost:3000/products/1
+
 http://localhost:3000/products/100
 
 ![dynamic_route](./dynamic_route.png)
