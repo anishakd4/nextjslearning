@@ -61,7 +61,21 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 ## Catch all Segments
 
 1. this file is match any URL that contains the doc segment in the path. Catch all segment routes captures all URL segments and maps them to this single file in our project
-2. nextjs provides an optional catch all route as well. Just '/docs' will move to 404. To display the same docs home page nextjs provides optional catch all segments. Just wrap square brackets with another pair of square brackets.
+2. This is particularly useful for documentation where we want different segments for better organization and SEO but the layout of the documentation remains the same.
+
+http://localhost:3000/docs/
+
+http://localhost:3000/docs/feature1/
+
+http://localhost:3000/docs/feature1/content1
+
+http://localhost:3000/docs/feature1/content1/feature1
+
+![catch_all_segment](./catch_all_segment.png)
+
+## Catch all Route
+
+- Nextjs provides optional catch all routes feature as well. Currently http://localhost:3000/docs/ will result is 404 page. To display the same docs home page nextjs provides optional catch all route. Just wrap square brackets with another pair of square brackets.
 
 ## Not Found Page
 
