@@ -79,10 +79,17 @@ http://localhost:3000/docs/feature1/content1/feature1
 
 ## Not Found Page
 
-1. By default in any any nextjs application when you navigate to a router that is not defined in the app folder, nextjs renders a default 404 not found page.
-2. For this just create a not-found.tsx or not-found.js file in the app folder.
-3. This not found page is tied to the file based routing mechanism of the app router.
-4. not found pages can also be define at the folder level.
+1. By default in any any nextjs application when you navigate to a route that is not defined in the app folder, nextjs renders a default 404 not found page.
+2. While this page is useful, we might want to customize its appearance.
+3. For this just create a not-found.tsx or not-found.js file in the app folder.
+4. This not found page is tied to the file based routing mechanism of the app router.
+5. not found pages can also be defined at the folder level.
+6. These not-found page is tied to the app router based mechanism.
+7. we can use the notFound function from nextjs to programmatically render not found page in case of certain condition.
+
+http://localhost:3000/billing
+
+http://localhost:3000/products/89/reviews/1001
 
 ## File Colocation
 
