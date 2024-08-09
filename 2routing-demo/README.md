@@ -38,7 +38,13 @@ http://localhost:3000/blog/second
 2. In nextjs we can enclose a folder name with brackets to create a dynamic route.
 3. nextjs treats square brackets in a folder name as a dynamic segment enabling us to create dynamic routes.
 
-Every page in th app router receives route parameters as a prop. Lets destructure it as params. The params object contains the route parameters as key value pairs
+Every page in the app router receives route parameters as a prop. Lets destructure it as params. The params object contains the route parameters as key value pairs
+
+http://localhost:3000/products
+http://localhost:3000/products/1
+http://localhost:3000/products/100
+
+![dynamic_route](./dynamic_route.png)
 
 ## Nested Dynamic Routes
 
