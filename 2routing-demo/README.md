@@ -24,6 +24,14 @@ When these conventions are followed the file automatically becomes a route
 
 1.By creating a nested folder structure, it will route in the same way in the url
 
+![blog_route](./blog_route.png)
+![first_route](./first_route.png)
+![second_route](./second_route.png)
+
+http://localhost:3000/blog
+http://localhost:3000/blog/first
+http://localhost:3000/blog/second
+
 ## Dynamic Routes
 
 1. While creating nested folders is ok for now but it is not always feasible to define routes using predefined paths especially for complex applications.
