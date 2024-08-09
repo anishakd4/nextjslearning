@@ -16,6 +16,10 @@ When these conventions are followed the file automatically becomes a route
 2. Although we deleted this layout.tsx file, nextjs automatically creates and populates it when we load the route route
 3. nextjs will automatically respond with 404 in case of non matching route, we don't have to explicitly handle non matching route.
 
+![root_route](./root_route.png)
+![about_route](./about_route.png)
+![profile_route](./profile_route.png)
+
 ## Nested Routes
 
 1.By creating a nested folder structure, it will route in the same way in the url
