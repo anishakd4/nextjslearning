@@ -54,6 +54,8 @@ http://localhost:3000/products/100
 
 It is possible to create nested dynamic routes by having dynamic segments in the folder names.
 
+![nested_dynamic_route](./nested_dynamic_route.png)
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Catch all Segments
